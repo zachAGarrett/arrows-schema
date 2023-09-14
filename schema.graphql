@@ -208,7 +208,7 @@ interface InDataSource @relationshipProperties {
   createdAt: DateTime! @timestamp(operations: [CREATE])
   updatedAt: DateTime @timestamp(operations: [UPDATE])
 
-  id: String!
+  id: String
 }
 
 ####### ENUMS
