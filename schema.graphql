@@ -74,7 +74,7 @@ type Match {
 }
 
 type Event {
-  name: string!
+  name: String!
   complete: Boolean!
   start: Date!
   end: Date!
@@ -101,7 +101,7 @@ type Competition {
   end: Date!
 
   # RELATIONSHIPS
-  events: [Events!]!
+  events: [Event!]!
     @relationship(type: "OF", properties: "EventOf", direction: IN)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
@@ -166,7 +166,7 @@ type DataSource {
     @relationship(type: "IN", properties: "InDataSource", direction: IN)
   competitions: [Competition!]!
     @relationship(type: "IN", properties: "InDataSource", direction: IN)
-  events: [Events!]!
+  events: [Event!]!
     @relationship(type: "IN", properties: "InDataSource", direction: IN)
 
   # DEFAULT FIELDS
