@@ -105,6 +105,7 @@ type Competition {
     @relationship(type: "OF", properties: "EventOf", direction: IN)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
+  nation: Nation @relationship(type: "HOSTS", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -146,9 +147,8 @@ type Nation {
   code: String! @unique
 
   # RELATIONSHIPS
-  competitions: [Competition!]!
-    @relationship(type: "IN", properties: "CompetitionInNation", direction: IN)
-  athletes: [Athlete!]! @relationship(type: "REPRESENTED", direction: IN)
+  competitions: [Competition!]! @relationship(type: "HOSTS", direction: OUT)
+  athletes: [Athlete!]! @relationship(type: "REPRESENTS", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -163,9 +163,11 @@ type DataSource {
 
   # RELATIONSHIPS
   athletes: [Athlete!]!
-    @relationship(type: "IN", properties: "DataSourceEdge", direction: IN)
+    @relationship(type: "IN", properties: "InDataSource", direction: IN)
   competitions: [Competition!]!
-    @relationship(type: "IN", properties: "DataSourceEdge", direction: IN)
+    @relationship(type: "IN", properties: "InDataSource", direction: IN)
+  events: [Events!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
