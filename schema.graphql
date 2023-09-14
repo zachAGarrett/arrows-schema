@@ -198,7 +198,7 @@ interface MatchOf @relationshipProperties {
   number: Int!
 }
 
-interface DataSourceEdge @relationshipProperties {
+interface InDataSource @relationshipProperties {
   createdAt: DateTime! @timestamp(operations: [CREATE])
   updatedAt: DateTime @timestamp(operations: [UPDATE])
 
