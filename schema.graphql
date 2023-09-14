@@ -86,7 +86,7 @@ type Event {
   # RELATIONSHIPS
   matches: [Match!]!
     @relationship(type: "OF", properties: "MatchOf", direction: IN)
-  competition: Competition!
+  competition: Competition
     @relationship(type: "OF", properties: "EventOf", direction: IN)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
