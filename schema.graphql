@@ -66,6 +66,8 @@ type Match {
       properties: "AthleteCompetes"
       direction: IN
     )
+  dataSources: [DataSource!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: OUT)
 
   # DEFAULT FIELDS
   id: ID! @id
