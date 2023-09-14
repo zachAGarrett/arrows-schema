@@ -180,7 +180,8 @@ type DataSource {
 
 ####### INTERFACES
 interface AthleteCompetes @relationshipProperties {
-  division: Division!
+  # division: Division!
+  division: String!
   eloDelta: Int
 }
 
