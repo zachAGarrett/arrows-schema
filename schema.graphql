@@ -96,7 +96,7 @@ type Event {
 
 type Competition {
   complete: Boolean!
-  name: string!
+  name: String!
   start: Date!
   end: Date!
 
