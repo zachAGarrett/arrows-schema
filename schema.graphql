@@ -27,6 +27,7 @@ type Set {
   match: Match @relationship(type: "OF", properties: "SetOf", direction: OUT)
   athlete: Athlete!
     @relationship(type: "SHOOTS", properties: "AthleteShoots", direction: IN)
+  nation: Nation @relationship(type: "FOR", direction: OUT)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -179,7 +180,6 @@ type DataSource {
 ####### INTERFACES
 interface AthleteCompetes @relationshipProperties {
   division: Division!
-  nation: NationCode!
   eloDelta: Int
 }
 
