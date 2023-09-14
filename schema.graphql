@@ -112,6 +112,23 @@ type Athlete {
   updatedAt: DateTime @timestamp(operations: [UPDATE])
 }
 
+type DataSource {
+  name: String! @unique
+  type: DataSourceType!
+
+  # RELATIONSHIPS
+  athletes: [Athlete!]!
+    @relationship(type: "IN", properties: "DataSourceEdge", direction: IN)
+  competitions: [Competition!]!
+    @relationship(type: "IN", properties: "DataSourceEdge", direction: IN)
+
+  # DEFAULT FIELDS
+  id: ID! @id
+  verified: Boolean! @default(value: false)
+  createdAt: DateTime! @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
+}
+
 ####### INTERFACES
 interface AthleteCompetes @relationshipProperties {
   division: Division!
@@ -136,7 +153,21 @@ interface MatchOf @relationshipProperties {
   number: Int!
 }
 
+interface DataSourceEdge @relationshipProperties {
+  createdAt: DateTime! @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
+
+  id: String!
+}
+
 ####### ENUMS
+enum DataSourceType {
+  """
+  A data source on the internet
+  """
+  WEB
+}
+
 enum NameOrder {
   """
   First / Last
