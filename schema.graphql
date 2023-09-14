@@ -16,7 +16,7 @@ type Arrow {
 }
 
 type Set {
-  complete: Boolean!
+  complete: Boolean! @default(value: true)
   arrowsInOrder: Boolean!
 
   # RELATIONSHIPS
@@ -53,7 +53,7 @@ type Target {
 }
 
 type Match {
-  complete: Boolean!
+  complete: Boolean! @default(value: true)
   style: MatchStyle!
   gender: MatchGender!
 
@@ -78,7 +78,7 @@ type Match {
 
 type Event {
   name: String!
-  complete: Boolean!
+  complete: Boolean @default(value: true)
   start: Date!
   end: Date!
 
@@ -98,7 +98,7 @@ type Event {
 }
 
 type Competition {
-  complete: Boolean!
+  complete: Boolean! @default(value: true)
   name: String!
   start: Date!
   end: Date!
