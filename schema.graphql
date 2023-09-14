@@ -121,7 +121,6 @@ type Athlete {
   familyName: String!
   givenName: String!
   nameOrder: NameOrder!
-  activeNation: NationCode!
   elimElo: Int
   qualElo: Int
 
