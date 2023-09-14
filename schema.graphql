@@ -200,6 +200,10 @@ interface MatchOf @relationshipProperties {
   number: Int!
 }
 
+interface EventOf @relationshipProperties {
+  number: Int!
+}
+
 interface InDataSource @relationshipProperties {
   createdAt: DateTime! @timestamp(operations: [CREATE])
   updatedAt: DateTime @timestamp(operations: [UPDATE])
