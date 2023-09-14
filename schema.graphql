@@ -199,11 +199,11 @@ interface SetOf @relationshipProperties {
 }
 
 interface MatchOf @relationshipProperties {
-  number: Int!
+  number: Int
 }
 
 interface EventOf @relationshipProperties {
-  number: Int!
+  number: Int
 }
 
 interface InDataSource @relationshipProperties {
