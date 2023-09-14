@@ -66,6 +66,7 @@ type Match {
       properties: "AthleteCompetes"
       direction: IN
     )
+  division: Division! @relationship(type: "OF", direction: OUT)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
 
@@ -133,6 +134,7 @@ type Athlete {
       properties: "AthleteCompetes"
       direction: OUT
     )
+  divisions: [Division!]! @relationship(type: "OF", direction: OUT)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
   nations: [Nation!]! @relationship(type: "REPRESENTS", direction: OUT)
@@ -151,6 +153,21 @@ type Nation {
   # RELATIONSHIPS
   competitions: [Competition!]! @relationship(type: "HOSTS", direction: OUT)
   athletes: [Athlete!]! @relationship(type: "REPRESENTS", direction: IN)
+
+  # DEFAULT FIELDS
+  id: ID! @id
+  verified: Boolean! @default(value: false)
+  createdAt: DateTime! @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
+}
+
+type Division {
+  name: String! @unique
+
+  dataSources: [DataSource!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: OUT)
+  matches: [Match!]! @relationship(type: "OF", direction: IN)
+  athletes: [Athlete!]! @relationship(type: "OF", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -180,8 +197,6 @@ type DataSource {
 
 ####### INTERFACES
 interface AthleteCompetes @relationshipProperties {
-  # division: Division!
-  division: String!
   eloDelta: Int
 }
 
@@ -273,7 +288,7 @@ enum MatchGender {
   X # Mixed
 }
 
-enum Division {
+enum DivisionName {
   """
   Recurve Senior
   """
