@@ -74,11 +74,37 @@ type Match {
 }
 
 type Event {
+  name: string!
   complete: Boolean!
+  start: Date!
+  end: Date!
 
   # RELATIONSHIPS
   matches: [Match!]!
     @relationship(type: "OF", properties: "MatchOf", direction: IN)
+  competition: Competition!
+    @relationship(type: "OF", properties: "EventOf", direction: IN)
+  dataSources: [DataSource!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: OUT)
+
+  # DEFAULT FIELDS
+  id: ID! @id
+  verified: Boolean! @default(value: false)
+  createdAt: DateTime! @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
+}
+
+type Competition {
+  complete: Boolean!
+  name: string!
+  start: Date!
+  end: Date!
+
+  # RELATIONSHIPS
+  events: [Events!]!
+    @relationship(type: "OF", properties: "EventOf", direction: IN)
+  dataSources: [DataSource!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: OUT)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -104,6 +130,25 @@ type Athlete {
       properties: "AthleteCompetes"
       direction: OUT
     )
+  dataSources: [DataSource!]!
+    @relationship(type: "IN", properties: "InDataSource", direction: OUT)
+  nations: [Nation!]! @relationship(type: "REPRESENTS", direction: OUT)
+
+  # DEFAULT FIELDS
+  id: ID! @id
+  verified: Boolean! @default(value: false)
+  createdAt: DateTime! @timestamp(operations: [CREATE])
+  updatedAt: DateTime @timestamp(operations: [UPDATE])
+}
+
+type Nation {
+  name: String
+  code: String! @unique
+
+  # RELATIONSHIPS
+  competitions: [Competition!]!
+    @relationship(type: "IN", properties: "CompetitionInNation", direction: IN)
+  athletes: [Athlete!]! @relationship(type: "REPRESENTED", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
