@@ -37,6 +37,7 @@ type Set {
 }
 
 type Target {
+  name: String! @unique
   rings: Int!
   radius: Int!
   max: Int!
@@ -89,7 +90,7 @@ type Event {
   matches: [Match!]!
     @relationship(type: "OF", properties: "MatchOf", direction: IN)
   competition: Competition
-    @relationship(type: "OF", properties: "EventOf", direction: IN)
+    @relationship(type: "OF", properties: "EventOf", direction: OUT)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
 
@@ -280,15 +281,15 @@ enum MatchStyle {
 
 enum MatchGender {
   """
-  Male event gender
+  Male match gender
   """
   M # Male
   """
-  Female event gender
+  Female match gender
   """
   F # Female
   """
-  Mixed gender event
+  Mixed gender match
   """
   X # Mixed
 }
