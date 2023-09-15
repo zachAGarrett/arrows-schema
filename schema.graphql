@@ -56,6 +56,7 @@ type Match {
   complete: Boolean! @default(value: true)
   style: MatchStyle!
   gender: MatchGender!
+  processed: Boolean! @default(value: false)
 
   # RELATIONSHIPS
   sets: [Set!]! @relationship(type: "OF", properties: "SetOf", direction: IN)
@@ -82,6 +83,7 @@ type Event {
   complete: Boolean @default(value: true)
   start: Date!
   end: Date!
+  processed: Boolean! @default(value: false)
 
   # RELATIONSHIPS
   matches: [Match!]!
@@ -103,6 +105,7 @@ type Competition {
   name: String!
   start: Date!
   end: Date!
+  processed: Boolean! @default(value: false)
 
   # RELATIONSHIPS
   events: [Event!]!
