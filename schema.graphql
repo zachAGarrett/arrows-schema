@@ -113,6 +113,7 @@ type Competition {
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
   nation: Nation @relationship(type: "HOSTS", direction: IN)
+  athletes: [Athlete!]! @relationship(type: "COMPETES", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -138,6 +139,7 @@ type Athlete {
       direction: OUT
     )
   divisions: [Division!]! @relationship(type: "OF", direction: OUT)
+  competitions: [Competition!]! @relationship(type: "COMPETES", direction: OUT)
   dataSources: [DataSource!]!
     @relationship(type: "IN", properties: "InDataSource", direction: OUT)
   nations: [Nation!]! @relationship(type: "REPRESENTS", direction: OUT)
