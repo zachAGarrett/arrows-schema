@@ -123,9 +123,9 @@ type Competition {
 }
 
 type Athlete {
-  familyName: String!
-  givenName: String!
-  nameOrder: NameOrder!
+  familyName: String
+  givenName: String
+  nameOrder: NameOrder
   elimElo: Int
   qualElo: Int
 
