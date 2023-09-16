@@ -20,7 +20,8 @@ type Set {
   arrowsInOrder: Boolean!
 
   # RELATIONSHIPS
-  target: Target! @relationship(type: "AT", direction: OUT)
+  target: Target!
+    @relationship(type: "AT", properties: "SetAtTarget", direction: OUT)
   arrows: [Arrow!]!
     @relationship(type: "OF", properties: "ArrowOf", direction: IN)
   sets: [Set!]! @relationship(type: "AGAINST", direction: OUT)
@@ -45,6 +46,8 @@ type Target {
   xRing: Boolean!
 
   # RELATIONSHIPS
+  sets: [Set!]!
+    @relationship(type: "AT", properties: "SetAtTarget", direction: IN)
 
   # DEFAULT FIELDS
   id: ID! @id
@@ -209,6 +212,13 @@ interface AthleteCompetes @relationshipProperties {
 interface AthleteShoots @relationshipProperties {
   eloDelta: Int
   result: Result
+}
+
+interface SetAtTarget @relationshipProperties {
+  """
+  Distance of the target in meters
+  """
+  distance: Int!
 }
 
 interface ArrowOf @relationshipProperties {
