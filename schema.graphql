@@ -38,6 +38,9 @@ type Set {
 }
 
 type Target {
+  """
+  Format of name is {season}-{radius}-{rings}-{spots} = IND-40-10-1
+  """
   name: String! @unique
   rings: Int!
   radius: Int!
